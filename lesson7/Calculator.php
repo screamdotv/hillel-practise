@@ -2,36 +2,37 @@
 
 class Calculator 
 {
-    public $num1;
-    public $num2;
+    public function __construct(
+        public int|float $num1, 
+        public int|float $num2,
+    ){}
 
-    public function __construct(int $num1, int $num2)
-    {
-        $this->num1 = $num1;
-        $this->num2 = $num2;
-    }
-
-    public function addition(): int 
+    public function addition() : int|float
     {
         $total = $this->num1 + $this->num2;
         return $total;
     }
 
-    public function subtraction(): int 
+    public function subtraction() : int|float
     {
         $total = $this->num1 - $this->num2;
         return $total;
     }
 
-    public function multiplication(): int 
+    public function multiplication() : int|float
     {
         $total = $this->num1 * $this->num2;
         return $total;
     }
 
-    public function division(): float 
+    public function division() : int|float|string
     {
-        $total = $this->num1 / $this->num2;
+        if($this->num2 == 0) {
+            $total = "На ноль делить нельзя!";
+        } else {
+            $total = $this->num1 / $this->num2;
+        }
+
         return $total;
     }
 }
