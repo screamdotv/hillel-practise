@@ -11,31 +11,38 @@
         require_once 'Rectangle.php';
         require_once 'Circle.php';
 
+        $square = null;
+        $rectangel= null;
+        $circle = null;
+
         $figure = empty($_POST['figure']) ? null: $_POST['figure'];
         
         if ($figure == 'square') {
             $squareHeight = (empty($_POST['height'])) ? null: $_POST['height'];
             $squareColor = (empty($_POST['color'])) ? null: $_POST['color'];
-
-            $square = new Square(width:$squareHeight, height: $squareHeight, color: $squareColor, radius: $radius=null);
-
+            
+            if(isset($squareHeight) && ($squareHeight > 0)){
+                $square = new Square(width:$squareHeight, height: $squareHeight, color: $squareColor);
+            }
         }
 
         if ($figure == 'rectangel') {
             $rectangelHeight = (empty($_POST['height'])) ? null: $_POST['height'];
             $rectangelWidth = (empty($_POST['width'])) ? null: $_POST['width'];
             $rectangelColor = (empty($_POST['color'])) ? null: $_POST['color'];
-
-            $rectangel = new Rectangle(width:$rectangelWidth, height: $rectangelHeight, color: $rectangelColor, radius: $radius=null);
             
+            if((isset($rectangelHeight) && ($rectangelHeight > 0)) && (isset($rectangelWidth) && ($rectangelWidth > 0))){
+                $rectangel = new Rectangle(width:$rectangelWidth, height: $rectangelHeight, color: $rectangelColor);
+            }
         }
 
         if ($figure == 'circle') {
-            $circleHeight = (empty($_POST['height'])) ? null: $_POST['height'];
+            $circleRadius = (empty($_POST['radius'])) ? null: $_POST['radius'];
             $circleColor = (empty($_POST['color'])) ? null: $_POST['color'];
             
-            $circle = new Circle(width: $circleHeight, height: $circleHeight, color: $circleColor, radius: $radius = 50);
-
+            if(isset($circleRadius) && ($circleRadius > 0)){
+                $circle = new Circle(radius: $circleRadius, color: $circleColor);
+            }
         }
     ?>
     <div>
@@ -47,12 +54,12 @@
             <input type="color" name="color" style="margin-bottom: 16px;"><br>
             <button name="figure" value="square" style="margin-bottom: 20px;">Намалювати фігуру</button>
         </form>
-        <?php if(isset($square) && $squareHeight > 0): ?>
-            <?= $square->draw(width:$squareHeight, height: $squareHeight, color: $squareColor, radius: $radius)?><br>
-            <?= "Периметр: " . $square->perimeter() . " cм"?><br>
-            <?= "Площа: " . $square->area() . " см2"?><br>
-        <?php elseif (isset($square) && $squareHeight < 0): ?>
-            <p style="color: red;"><?= "Значення повинні бути не відємним числом  " . $squareHeight?></p>
+        <?php if($square): ?>
+        <?= $square->draw()?><br>
+        <p>Периметр: <?= $square->perimeter() ?> cм2</p>
+        <p>Площа: <?= $square->area() ?> см3</p>
+        <?php else: ?>
+            <p style="color: red;">Значення повинні бути не відємним числом</p>
         <?php endif; ?>
     </div>
     <hr>
@@ -66,30 +73,29 @@
         <input type="color" name="color" style="margin-bottom: 16px;"></label><br>
         <button name="figure" value="rectangel" style="margin-bottom: 20px;">Намалювати фігуру</button>
     </form>
-    <?php if(isset($rectangel) && ( $rectangelWidth > 0 && $rectangelHeight > 0)): ?>
-        <?= $rectangel->draw(width:$rectangelWidth, height: $rectangelHeight, color: $rectangelColor, radius: $radius)?><br>
-        <?= "Периметр: " . $rectangel->perimeter() . " cм"?><br>
-        <?= "Площа: " . $rectangel->area() . " см2"?><br>
-        <?php elseif (isset($rectangel) && ( $rectangelWidth < 0 || $rectangelHeight < 0)): ?>
-            <p style="color: red;"><?= "Значення повинні бути не відємним числом " . $rectangelWidth. " " . $rectangelHeight?></p>
+    <?php if($rectangel): ?>
+        <?= $rectangel->draw()?><br>
+        <p>Периметр: <?= $rectangel->perimeter() ?> cм2</p>
+        <p>Площа: <?= $rectangel->area() ?> см3</p>
+        <?php else: ?>
+            <p style="color: red;">Значення повинні бути не відємним числом</p>
         <?php endif; ?>
     <hr>
     <form action="" method="post">
         <p>Коло</p>
-        <label>Діаметр (см):</label><br>
-        <input type="number" name="height" style="margin-bottom: 16px;"></label><br>
+        <label>Радіус (см):</label><br>
+        <input type="number" name="radius" style="margin-bottom: 16px;"></label><br>
         <label>Колір:</label><br>
         <input type="color" name="color" style="margin-bottom: 16px;"></label><br>
         <button name="figure" value="circle" style="margin-bottom: 20px;">Намалювати фігуру</button>
     </form>
-    <?php if(isset($circle) && $circleHeight > 0): ?>
-        <?= $circle->draw(width: $circleHeight, height: $circleHeight, color: $circleColor, radius: $radius)?><br>
-        <?= "Периметр: " . $circle->perimeter() . " cм"?><br>
-        <?= "Площа: " . $circle->area() . " см2"?><br>
-    <?php elseif (isset($circle) && $circleHeight < 0): ?>
-        <p style="color: red;"><?= "Значення повинні бути не відємним числом " . $_POST['height']?></p>
+    <?php if($circle): ?>
+        <?= $circle->draw()?><br>
+        <p>Периметр: <?= $circle->perimeter() ?> cм2</p>
+        <p>Площа: <?= $circle->area() ?> см3</p>
+    <?php else: ?>
+        <p style="color: red;">Значення повинні бути не відємним числом</p>
     <?php endif; ?>
-    
     <hr>
 </body>
 </html>

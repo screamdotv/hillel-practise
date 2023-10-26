@@ -5,16 +5,12 @@ class Square extends Figure
 {
     public function area(): int|float
     {
-        $value = $this->height ** 2;
-        
-        return $value;
+        return $this->height ** 2;
     }
 
     public function perimeter(): int|float
     {
-        $value = $this->height * 4;
-        
-        return $value;
+        return $this->height * 4;
     }
 
 }

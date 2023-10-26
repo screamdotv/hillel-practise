@@ -6,11 +6,10 @@ class Figure
         public int|float|null $width,
         public int|float|null $height,
         public string|null $color,
-        public int|null $radius = null
     ){}
 
-    public function draw($width, $height, $color, $radius): string
+    public function draw(): string
     {
-        return "<div style=' width: " . $width . "px; height: " . $height . "px; background-color: " . $color . "; border-radius: " . $radius . "%; '></div>";  
+        return "<div style=' width: " . $this->width . "px; height: " . $this->height . "px; background-color: " . $this->color . ";'></div>";  
     }
 }
