@@ -1,4 +1,6 @@
 <?php
+namespace ClassForSerializer;
+
 class Person 
 {
     public string $name;

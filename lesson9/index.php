@@ -1,10 +1,10 @@
 <?php
-require_once 'Persone.php';
 require_once 'vendor/autoload.php';
 
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use ClassForSerializer\Person;
 
 $encoders = new JsonEncoder();
 $normalizers = new ObjectNormalizer();
