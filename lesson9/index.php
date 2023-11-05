@@ -4,8 +4,9 @@ require_once 'vendor/autoload.php';
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
-use ClassForSerializer\Person;
 
+use App\ClassForSerializer\Person;
+// var_dump(__DIR__ . '/app');die;
 $encoders = new JsonEncoder();
 $normalizers = new ObjectNormalizer();
 

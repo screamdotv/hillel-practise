@@ -1,11 +1,13 @@
 {
     "require": {
         "symfony/serializer": "^6.3",
-        "symfony/property-access": "^6.3"
+        "symfony/property-access": "^6.3",
+        "symfony/serializer-pack": "^1.3"
     },
-     "autoload": {
+    
+    "autoload": {
         "psr-4": {
-            "ClassForSerializer\\": "lesson9/"
+            "App\\": "app/"
         }
     }
 }
