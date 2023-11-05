@@ -5,8 +5,8 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
-use App\ClassForSerializer\Person;
-// var_dump(__DIR__ . '/app');die;
+use \App\Person;
+
 $encoders = new JsonEncoder();
 $normalizers = new ObjectNormalizer();
 

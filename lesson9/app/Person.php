@@ -1,5 +1,5 @@
 <?php
-namespace App\ClassForSerializer;
+namespace App;
 
 class Person 
 {
