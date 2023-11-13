@@ -9,7 +9,7 @@ $checkbox = new CheckboxInput(type:"checkbox", id:"text", name:"checkbox");
 $radiobox = new RadioInput(type:"radio", id:"text", name:"man", value:"man");
 $textarea = new Textarea(type:"textarea", id:"textarea", name:"comment");
   
-$form = new FormGenerator($text, $email, $password, $number, $checkbox, $radiobox, $textarea);
+$form = new FormGenerator($text, $text, $text, $email, $password, $number, $checkbox, $radiobox, $textarea);
 
 $form->generateForm();
 

@@ -15,6 +15,5 @@ abstract class Input
     abstract public function getType();
     abstract public function getId();
     abstract public function getName();
-    
-    abstract public function render();
+
 }

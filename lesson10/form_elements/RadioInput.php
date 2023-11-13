@@ -1,7 +1,8 @@
 <?php
 require_once 'form_elements/Input.php';
+require_once 'form_elements/InputIntarface.php';
 
-class RadioInput extends Input {
+class RadioInput extends Input implements InputInterface{
     private $value;
 
     public function __construct($type, $id, $name, $value)

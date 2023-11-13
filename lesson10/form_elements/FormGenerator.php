@@ -2,46 +2,18 @@
 
 class FormGenerator 
 {
-    private TextInput|null $textInput;
-    private EmailInput|null $emailInput;
-    private PasswordInput|null $passwordInput;
-    private NumberInput|null $numberInput;
-    private CheckboxInput|null $checkboxInput;
-    private RadioInput|null $radioInput;
-    private Textarea|null $textarea;
+    private array $inputs;
     
-    public function __construct(
-        TextInput $textInput = null, 
-        EmailInput $emailInput = null, 
-        PasswordInput $passwordInput = null,
-        NumberInput $numberInput = null,
-        CheckboxInput $checkboxInput = null,
-        RadioInput $radioInput = null,
-        Textarea $textarea = null,)
+    public function __construct(InputInterface ...$inputs)
     {
-        $this->textInput = $textInput;
-        $this->emailInput = $emailInput;
-        $this->passwordInput = $passwordInput;
-        $this->numberInput = $numberInput;
-        $this->checkboxInput = $checkboxInput;
-        $this->radioInput = $radioInput;
-        $this->textarea = $textarea;
+        $this->inputs = $inputs;
     }
     
 
     public function generateForm()
     {
-      $formValue = [
-        $this->textInput, 
-        $this->emailInput, 
-        $this->passwordInput, 
-        $this->numberInput,
-        $this->checkboxInput, 
-        $this->radioInput, 
-        $this->textarea
-    ];
         echo "<form action='' method='post'>";
-        foreach ($formValue as $value){
+        foreach ($this->inputs as $value){
             if ($value != null){
                 echo $value->render();
             }

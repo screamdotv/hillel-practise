@@ -1,7 +1,7 @@
 <?php
 require_once 'form_elements/Input.php';
 
-class NumberInput extends Input {
+class NumberInput extends Input implements InputInterface{
 
     public function getType()
     {

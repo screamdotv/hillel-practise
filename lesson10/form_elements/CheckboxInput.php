@@ -1,7 +1,8 @@
 <?php
 require_once 'form_elements/Input.php';
+require_once 'form_elements/InputIntarface.php';
 
-class CheckboxInput extends Input {
+class CheckboxInput extends Input implements InputInterface{
 
     public function getType()
     {

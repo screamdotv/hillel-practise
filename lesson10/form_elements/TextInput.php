@@ -1,7 +1,8 @@
 <?php
 require_once 'form_elements/Input.php';
+require_once 'form_elements/InputIntarface.php';
 
-class TextInput extends Input {
+class TextInput extends Input implements InputInterface {
 
     public function getType()
     {
