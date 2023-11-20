@@ -11,6 +11,8 @@ services:
     volumes:
       - .:/var/www/html/
       - ./logs/nginx:/var/log/nginx/
+    depends_on:
+      - php
   php:
     build:
       context: .
@@ -20,9 +22,11 @@ services:
     volumes:
       - .:/var/www/html/
       - ./logs/php.log:/var/log/fpm-php.www.log
+    depends_on:
+      - composer
   composer:
     image: composer
-    command: composer install
+    command: install
     volumes:
       - ".:/app"
 networks:
