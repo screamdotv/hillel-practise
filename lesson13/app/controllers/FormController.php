@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Core\TextInput;
 use App\Core\PasswordInput;
-use App\Core\FormGenerator;
+use App\Models\FormGenerator;
 
 
 class FormController {

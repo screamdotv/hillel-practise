@@ -12,9 +12,13 @@ class UserModel
         $this->password = $password;
     }
 
-    public function getUser():string
+    public function getName():string
     {
-        return "Hello {$this->name}, your password {$this->password}";
+        return ucfirst($this->name);
     }
     
+    public function getPassword():string
+    {
+        return $this->password;
+    }
 }

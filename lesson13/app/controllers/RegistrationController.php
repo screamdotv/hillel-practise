@@ -9,7 +9,10 @@ class RegistrationController
 
         $newUser = new UserModel($name, $password);
         
-        return $newUser->getUser();
+        $userName = $newUser->getName();
+        $userPassword = $newUser->getPassword();
+
+        require_once (__DIR__ . '/../views/user.php');
     }
           
 }

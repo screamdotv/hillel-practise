@@ -9,7 +9,6 @@ if (empty($_POST['name'])) {
     $form->index();
 } else {
     $welcome = new RegistrationController();
-    
-    echo $welcome->newUser($_POST['name'], $_POST['password']);
+    $welcome->newUser($_POST['name'], $_POST['password']);
 }
 

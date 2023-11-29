@@ -1,5 +1,5 @@
 <?php
-namespace App\Core;
+namespace App\Models;
 
 use App\Core\InputInterface;
 
@@ -12,7 +12,6 @@ class FormGenerator
         $this->inputs = $inputs;
     }
     
-
     public function getInputs()
     {
         return $this->inputs;
