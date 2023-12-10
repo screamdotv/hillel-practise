@@ -53,8 +53,8 @@ class UserModel
         $validator = new Validator();
 
         // Передача массива имен свойств для обработки атрибутов
-        $propertyNames = ['firstName', 'lastName', 'email', 'password']; 
+        // $propertyNames = ['firstName', 'lastName', 'email', 'password']; 
 
-        return $validator->requiredValues($this, $propertyNames);
+        return $validator->requiredValues($this);
     }
 }

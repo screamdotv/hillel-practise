@@ -1,49 +1,54 @@
 <?php
 namespace App\Core;
 
-// use App\Core\Required;
-// use App\Core\MinLength;
-// use App\Core\Email;
-require_once (__DIR__ . '/Attribute.php');
-use App\Models\UserModel;
+use App\Core\Required;
+use App\Core\MinLength;
+use App\Core\Email;
+
 use ReflectionClass;
 
 class Validator {
 
     
-    public function requiredValues($object, $propertyNames)
+    public function requiredValues($object)
     {
         $errors = [];
         $reflectionClass = new ReflectionClass($object);
-
-        foreach ($propertyNames as $propertyName) {
-            $property = $reflectionClass->getProperty($propertyName);
-            $property->setAccessible(true);
-            $propertyValue = $property->getValue($object);
-            
-            // Получаем атрибуты для свойства
-            $attributesRequired = $property->getAttributes(Required::class);
-
-            foreach ($attributesRequired as $attribute) {
-                // Создаем экземпляр атрибута Required
+        
+        $attributesRequired = $reflectionClass->getAttributes(Required::class);
+        var_dump($attributesRequired);
+        foreach ($attributesRequired as $attribute) {
                 $requiredAttribute = $attribute->newInstance();
+                
+                $propertyName = $attribute->getName();
 
-                // Вызываем метод required атрибута для проверки значения
+                $property = $reflectionClass->getProperty($propertyName);
+                $property->setAccessible(true);
+                $propertyValue = $property->getValue($object);
+                
                 $result = $requiredAttribute->required($propertyValue);
-
+        
                 if (!$result) {
                     array_push($errors,"Заполните поле '$propertyName'<br>");
                 }
             }
 
-            $attributesLength = $property->getAttributes(MinLength::class);
+        $attributesLength = $reflectionClass->getAttributes(MinLength::class);
 
             foreach ($attributesLength as $attribute) {
-                // Создаем экземпляр атрибута Required
+                
+                $lengthAttribute = $attribute->newInstance();
+                
+                $propertyName = $attribute->getName();
+
+                $property = $reflectionClass->getProperty($propertyName);
+                $property->setAccessible(true);
+                $propertyValue = $property->getValue($object);
+
                 $lengthAttribute = $attribute->newInstance();
 
-                // Вызываем метод required атрибута для проверки значения
                 $result = $lengthAttribute->length($propertyValue);
+                
 
                 if (!$result) {
                     if($propertyName == 'password') {
@@ -54,20 +59,25 @@ class Validator {
                 }
             }
 
-            $attributesEmail = $property->getAttributes(Email::class);
+        $attributesEmail = $reflectionClass->getAttributes(Email::class);
 
             foreach ($attributesEmail as $attribute) {
-                // Создаем экземпляр атрибута Required
-                $emailAttribute = $attribute->newInstance();
 
-                // Вызываем метод required атрибута для проверки значения
+                $emailAttribute = $attribute->newInstance();
+                
+                $propertyName = $attribute->getName();
+
+                $property = $reflectionClass->getProperty($propertyName);
+                $property->setAccessible(true);
+                $propertyValue = $property->getValue($object);
+                
                 $result = $emailAttribute->email($propertyValue);
 
                 if (!$result) {
                     array_push($errors, "Введите корректный адрес email");
                 }
             }
-        }
+        
 
         return $errors;
     }

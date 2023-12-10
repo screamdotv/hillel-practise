@@ -10,7 +10,7 @@ class RegistrationController
 
         $newUser = new UserModel($firstName, $lastName, $email, $password);
         $validate = $newUser->validateAttributes();
-        
+        var_dump($validate);
         if (empty($validate)) {
             $userName = $newUser->getFirstName();
             $userPassword = $newUser->getPassword();
