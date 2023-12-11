@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  php:
+    image: php:8.2
+    working_dir: "/var/www/html/"
+    command: "php artisan serve --host=0.0.0.0 --port=80"
+    volumes:
+      - .:/var/www/html/
+    ports:
+      - "80:80"
+  composer:
+    image: composer
+    volumes:
+      - ".:/app"
